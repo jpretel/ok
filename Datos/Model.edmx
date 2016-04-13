@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="OKSYSTEMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="OKSYSTEMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ASIG_TDOCUMENTO">
           <Key>
             <PropertyRef Name="IDTDOCUMENTO" />
@@ -12,6 +12,35 @@
           </Key>
           <Property Name="IDTDOCUMENTO" Type="char" MaxLength="3" Nullable="false" />
           <Property Name="FORMULARIO" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LECTOR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="IDTDOCUMENTO" Type="char" MaxLength="3" />
+          <Property Name="SERIE" Type="char" MaxLength="4" />
+          <Property Name="NUMERO" Type="int" />
+          <Property Name="FECHA" Type="datetime" />
+          <Property Name="IDRESPONSABLE" Type="char" MaxLength="6" />
+        </EntityType>
+        <EntityType Name="LECTOR_DETALLE">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ITEM" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ITEM" Type="int" Nullable="false" />
+          <Property Name="IDPRODUCTO" Type="char" MaxLength="20" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="200" />
+          <Property Name="CANTIDAD" Type="numeric" Precision="17" Scale="6" />
+        </EntityType>
+        <EntityType Name="RESPONSABLE">
+          <Key>
+            <PropertyRef Name="IDRESPONSABLE" />
+          </Key>
+          <Property Name="IDRESPONSABLE" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="NOMBRES" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="TDOCUMENTO">
           <Key>
@@ -38,16 +67,109 @@
           <Property Name="NOMBRES" Type="varchar" MaxLength="200" />
           <Property Name="ESTADO" Type="numeric" Precision="1" Scale="0" />
         </EntityType>
+        <Association Name="FK_LECTOR_RESPONSABLE">
+          <End Role="RESPONSABLE" Type="Self.RESPONSABLE" Multiplicity="0..1" />
+          <End Role="LECTOR" Type="Self.LECTOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RESPONSABLE">
+              <PropertyRef Name="IDRESPONSABLE" />
+            </Principal>
+            <Dependent Role="LECTOR">
+              <PropertyRef Name="IDRESPONSABLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PF_LECTOR_DETALLE_LECTOR">
+          <End Role="LECTOR" Type="Self.LECTOR" Multiplicity="1" />
+          <End Role="LECTOR_DETALLE" Type="Self.LECTOR_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LECTOR">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LECTOR_DETALLE">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="OKSYSTEMModelStoreContainer">
           <EntitySet Name="ASIG_TDOCUMENTO" EntityType="Self.ASIG_TDOCUMENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LECTOR" EntityType="Self.LECTOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LECTOR_DETALLE" EntityType="Self.LECTOR_DETALLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RESPONSABLE" EntityType="Self.RESPONSABLE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TDOCUMENTO" EntityType="Self.TDOCUMENTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TDOCUMENTO_SERIE" EntityType="Self.TDOCUMENTO_SERIE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_LECTOR_RESPONSABLE" Association="Self.FK_LECTOR_RESPONSABLE">
+            <End Role="RESPONSABLE" EntitySet="RESPONSABLE" />
+            <End Role="LECTOR" EntitySet="LECTOR" />
+          </AssociationSet>
+          <AssociationSet Name="PF_LECTOR_DETALLE_LECTOR" Association="Self.PF_LECTOR_DETALLE_LECTOR">
+            <End Role="LECTOR" EntitySet="LECTOR" />
+            <End Role="LECTOR_DETALLE" EntitySet="LECTOR_DETALLE" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OKSYSTEMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ASIG_TDOCUMENTO">
+          <Key>
+            <PropertyRef Name="IDTDOCUMENTO" />
+            <PropertyRef Name="FORMULARIO" />
+          </Key>
+          <Property Name="IDTDOCUMENTO" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="FORMULARIO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LECTOR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDTDOCUMENTO" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="SERIE" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="NUMERO" Type="Int32" />
+          <Property Name="FECHA" Type="DateTime" Precision="3" />
+          <Property Name="IDRESPONSABLE" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="RESPONSABLE" Relationship="Self.FK_LECTOR_RESPONSABLE" FromRole="LECTOR" ToRole="RESPONSABLE" />
+          <NavigationProperty Name="LECTOR_DETALLE" Relationship="Self.PF_LECTOR_DETALLE_LECTOR" FromRole="LECTOR" ToRole="LECTOR_DETALLE" />
+        </EntityType>
+        <EntityType Name="LECTOR_DETALLE">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ITEM" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ITEM" Type="Int32" Nullable="false" />
+          <Property Name="IDPRODUCTO" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CANTIDAD" Type="Decimal" Precision="17" Scale="6" />
+          <NavigationProperty Name="LECTOR" Relationship="Self.PF_LECTOR_DETALLE_LECTOR" FromRole="LECTOR_DETALLE" ToRole="LECTOR" />
+        </EntityType>
+        <EntityType Name="RESPONSABLE">
+          <Key>
+            <PropertyRef Name="IDRESPONSABLE" />
+          </Key>
+          <Property Name="IDRESPONSABLE" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRES" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LECTOR" Relationship="Self.FK_LECTOR_RESPONSABLE" FromRole="RESPONSABLE" ToRole="LECTOR" />
+        </EntityType>
+        <EntityType Name="TDOCUMENTO">
+          <Key>
+            <PropertyRef Name="IDTDOCUMENTO" />
+          </Key>
+          <Property Name="IDTDOCUMENTO" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="Decimal" Precision="1" Scale="0" />
+        </EntityType>
+        <EntityType Name="TDOCUMENTO_SERIE">
+          <Key>
+            <PropertyRef Name="IDTDOCUMENTO" />
+            <PropertyRef Name="SERIE" />
+          </Key>
+          <Property Name="IDTDOCUMENTO" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="SERIE" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
         <EntityType Name="USUARIO">
           <Key>
             <PropertyRef Name="IDUSUARIO" />
@@ -57,42 +179,109 @@
           <Property Name="NOMBRES" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="ESTADO" Type="Decimal" Precision="1" Scale="0" />
         </EntityType>
+        <Association Name="FK_LECTOR_RESPONSABLE">
+          <End Role="RESPONSABLE" Type="Self.RESPONSABLE" Multiplicity="0..1" />
+          <End Role="LECTOR" Type="Self.LECTOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RESPONSABLE">
+              <PropertyRef Name="IDRESPONSABLE" />
+            </Principal>
+            <Dependent Role="LECTOR">
+              <PropertyRef Name="IDRESPONSABLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PF_LECTOR_DETALLE_LECTOR">
+          <End Role="LECTOR" Type="Self.LECTOR" Multiplicity="1" />
+          <End Role="LECTOR_DETALLE" Type="Self.LECTOR_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LECTOR">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LECTOR_DETALLE">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="OKSYSTEMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ASIG_TDOCUMENTO" EntityType="Self.ASIG_TDOCUMENTO" />
+          <EntitySet Name="LECTOR" EntityType="Self.LECTOR" />
+          <EntitySet Name="LECTOR_DETALLE" EntityType="Self.LECTOR_DETALLE" />
+          <EntitySet Name="RESPONSABLE" EntityType="Self.RESPONSABLE" />
+          <EntitySet Name="TDOCUMENTO" EntityType="Self.TDOCUMENTO" />
+          <EntitySet Name="TDOCUMENTO_SERIE" EntityType="Self.TDOCUMENTO_SERIE" />
           <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
-          <EntitySet Name="ASIG_TDOCUMENTO" EntityType="OKSYSTEMModel.ASIG_TDOCUMENTO" />
-          <EntitySet Name="TDOCUMENTO" EntityType="OKSYSTEMModel.TDOCUMENTO" />
-          <EntitySet Name="TDOCUMENTO_SERIE" EntityType="OKSYSTEMModel.TDOCUMENTO_SERIE" />
+          <AssociationSet Name="FK_LECTOR_RESPONSABLE" Association="Self.FK_LECTOR_RESPONSABLE">
+            <End Role="RESPONSABLE" EntitySet="RESPONSABLE" />
+            <End Role="LECTOR" EntitySet="LECTOR" />
+          </AssociationSet>
+          <AssociationSet Name="PF_LECTOR_DETALLE_LECTOR" Association="Self.PF_LECTOR_DETALLE_LECTOR">
+            <End Role="LECTOR" EntitySet="LECTOR" />
+            <End Role="LECTOR_DETALLE" EntitySet="LECTOR_DETALLE" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="ASIG_TDOCUMENTO">
-          <Key>
-            <PropertyRef Name="IDTDOCUMENTO" />
-            <PropertyRef Name="FORMULARIO" />
-          </Key>
-          <Property Name="IDTDOCUMENTO" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
-          <Property Name="FORMULARIO" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="TDOCUMENTO">
-          <Key>
-            <PropertyRef Name="IDTDOCUMENTO" />
-          </Key>
-          <Property Name="IDTDOCUMENTO" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
-          <Property Name="DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="ESTADO" Type="Decimal" Precision="1" Scale="0" />
-        </EntityType>
-        <EntityType Name="TDOCUMENTO_SERIE">
-          <Key>
-            <PropertyRef Name="IDTDOCUMENTO" />
-            <PropertyRef Name="SERIE" />
-          </Key>
-          <Property Name="IDTDOCUMENTO" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
-          <Property Name="SERIE" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="OKSYSTEMModelStoreContainer" CdmEntityContainer="OKSYSTEMEntities">
+          <EntitySetMapping Name="ASIG_TDOCUMENTO">
+            <EntityTypeMapping TypeName="OKSYSTEMModel.ASIG_TDOCUMENTO">
+              <MappingFragment StoreEntitySet="ASIG_TDOCUMENTO">
+                <ScalarProperty Name="IDTDOCUMENTO" ColumnName="IDTDOCUMENTO" />
+                <ScalarProperty Name="FORMULARIO" ColumnName="FORMULARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LECTOR">
+            <EntityTypeMapping TypeName="OKSYSTEMModel.LECTOR">
+              <MappingFragment StoreEntitySet="LECTOR">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDTDOCUMENTO" ColumnName="IDTDOCUMENTO" />
+                <ScalarProperty Name="SERIE" ColumnName="SERIE" />
+                <ScalarProperty Name="NUMERO" ColumnName="NUMERO" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="IDRESPONSABLE" ColumnName="IDRESPONSABLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LECTOR_DETALLE">
+            <EntityTypeMapping TypeName="OKSYSTEMModel.LECTOR_DETALLE">
+              <MappingFragment StoreEntitySet="LECTOR_DETALLE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+                <ScalarProperty Name="IDPRODUCTO" ColumnName="IDPRODUCTO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RESPONSABLE">
+            <EntityTypeMapping TypeName="OKSYSTEMModel.RESPONSABLE">
+              <MappingFragment StoreEntitySet="RESPONSABLE">
+                <ScalarProperty Name="IDRESPONSABLE" ColumnName="IDRESPONSABLE" />
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TDOCUMENTO">
+            <EntityTypeMapping TypeName="OKSYSTEMModel.TDOCUMENTO">
+              <MappingFragment StoreEntitySet="TDOCUMENTO">
+                <ScalarProperty Name="IDTDOCUMENTO" ColumnName="IDTDOCUMENTO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TDOCUMENTO_SERIE">
+            <EntityTypeMapping TypeName="OKSYSTEMModel.TDOCUMENTO_SERIE">
+              <MappingFragment StoreEntitySet="TDOCUMENTO_SERIE">
+                <ScalarProperty Name="IDTDOCUMENTO" ColumnName="IDTDOCUMENTO" />
+                <ScalarProperty Name="SERIE" ColumnName="SERIE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="USUARIO">
             <EntityTypeMapping TypeName="OKSYSTEMModel.USUARIO">
               <MappingFragment StoreEntitySet="USUARIO">
@@ -100,31 +289,6 @@
                 <ScalarProperty Name="CLAVE" ColumnName="CLAVE" />
                 <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
                 <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ASIG_TDOCUMENTO">
-            <EntityTypeMapping TypeName="OKSYSTEMModel.ASIG_TDOCUMENTO">
-              <MappingFragment StoreEntitySet="ASIG_TDOCUMENTO">
-                <ScalarProperty Name="FORMULARIO" ColumnName="FORMULARIO" />
-                <ScalarProperty Name="IDTDOCUMENTO" ColumnName="IDTDOCUMENTO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TDOCUMENTO">
-            <EntityTypeMapping TypeName="OKSYSTEMModel.TDOCUMENTO">
-              <MappingFragment StoreEntitySet="TDOCUMENTO">
-                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
-                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
-                <ScalarProperty Name="IDTDOCUMENTO" ColumnName="IDTDOCUMENTO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TDOCUMENTO_SERIE">
-            <EntityTypeMapping TypeName="OKSYSTEMModel.TDOCUMENTO_SERIE">
-              <MappingFragment StoreEntitySet="TDOCUMENTO_SERIE">
-                <ScalarProperty Name="SERIE" ColumnName="SERIE" />
-                <ScalarProperty Name="IDTDOCUMENTO" ColumnName="IDTDOCUMENTO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

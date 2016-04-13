@@ -4,11 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fb2ef434ab6441889450d2f01000548a" Name="Diagram1">
-        <EntityTypeShape EntityType="OKSYSTEMModel.USUARIO" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OKSYSTEMModel.ASIG_TDOCUMENTO" Width="1.5" PointX="3.375" PointY="1.625" />
-        <EntityTypeShape EntityType="OKSYSTEMModel.TDOCUMENTO" Width="1.5" PointX="1.125" PointY="3.5" />
-        <EntityTypeShape EntityType="OKSYSTEMModel.TDOCUMENTO_SERIE" Width="1.5" PointX="3.125" PointY="3.5" />
+      <Diagram DiagramId="045222f128034fd5adb1afe5b5ca1a8d" Name="Diagram1">
+        <EntityTypeShape EntityType="OKSYSTEMModel.ASIG_TDOCUMENTO" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OKSYSTEMModel.LECTOR" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="OKSYSTEMModel.LECTOR_DETALLE" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OKSYSTEMModel.RESPONSABLE" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OKSYSTEMModel.TDOCUMENTO" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OKSYSTEMModel.TDOCUMENTO_SERIE" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OKSYSTEMModel.USUARIO" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="OKSYSTEMModel.FK_LECTOR_RESPONSABLE" ManuallyRouted="false" />
+        <AssociationConnector Association="OKSYSTEMModel.PF_LECTOR_DETALLE_LECTOR" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

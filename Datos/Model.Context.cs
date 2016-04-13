@@ -7,7 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Entidad
+using Entidad;
+
+namespace Datos
 {
     using System;
     using System.Data.Entity;
@@ -25,9 +27,12 @@ namespace Entidad
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<USUARIO> USUARIO { get; set; }
         public virtual DbSet<ASIG_TDOCUMENTO> ASIG_TDOCUMENTO { get; set; }
+        public virtual DbSet<LECTOR> LECTOR { get; set; }
+        public virtual DbSet<LECTOR_DETALLE> LECTOR_DETALLE { get; set; }
+        public virtual DbSet<RESPONSABLE> RESPONSABLE { get; set; }
         public virtual DbSet<TDOCUMENTO> TDOCUMENTO { get; set; }
         public virtual DbSet<TDOCUMENTO_SERIE> TDOCUMENTO_SERIE { get; set; }
+        public virtual DbSet<USUARIO> USUARIO { get; set; }
     }
 }

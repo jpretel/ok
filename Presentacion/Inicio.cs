@@ -20,7 +20,7 @@ namespace Presentacion
 
         private void ShowNewForm(object sender, EventArgs e)
         {
-            FormSalidas form = new FormSalidas();
+            LectorLista form = new LectorLista();
             form.MdiParent = this;
             form.Show();
         }

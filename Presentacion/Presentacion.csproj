@@ -51,11 +51,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormSalidas.cs">
+    <Compile Include="LectorDoc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSalidas.Designer.cs">
-      <DependentUpon>FormSalidas.cs</DependentUpon>
+    <Compile Include="LectorDoc.Designer.cs">
+      <DependentUpon>LectorDoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LectorLista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LectorLista.Designer.cs">
+      <DependentUpon>LectorLista.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -71,8 +77,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormSalidas.resx">
-      <DependentUpon>FormSalidas.cs</DependentUpon>
+    <EmbeddedResource Include="LectorLista.resx">
+      <DependentUpon>LectorLista.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
