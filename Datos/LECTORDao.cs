@@ -6,9 +6,9 @@ using Entidad;
 
 namespace Datos
 {
-    class LECTORDao
+    public class LECTORDao
     {
-        public List<LECTOR> GetIDusuario(DateTime desde, DateTime hasta)
+        public List<LECTOR> GetLista(DateTime desde, DateTime hasta)
         {
             using (OKSYSTEMEntities db = new OKSYSTEMEntities())
             {

@@ -22,13 +22,27 @@ namespace Presentacion
         }
 
         static object locker = new object();
-        static string GenerateID()
+        public static string GenerateID()
         {
             lock (locker)
             {
                 Thread.Sleep(100);
                 return DateTime.Now.ToString("yyyyMMddHHmmssf");
             }
+        }
+
+
+        public static DateTime ChangeTime(this DateTime dateTime, int hours, int minutes, int seconds, int milliseconds)
+        {
+            return new DateTime(
+                dateTime.Year,
+                dateTime.Month,
+                dateTime.Day,
+                hours,
+                minutes,
+                seconds,
+                milliseconds,
+                dateTime.Kind);
         }
     }
 }

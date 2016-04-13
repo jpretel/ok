@@ -31,10 +31,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnConsultar = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dpDesde = new System.Windows.Forms.DateTimePicker();
+            this.dpHasta = new System.Windows.Forms.DateTimePicker();
+            this.grdDatos = new System.Windows.Forms.DataGridView();
+            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -65,44 +66,56 @@
             this.btnConsultar.UseVisualStyleBackColor = true;
             this.btnConsultar.Click += new System.EventHandler(this.button1_Click);
             // 
-            // dateTimePicker1
+            // dpDesde
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(84, 19);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(96, 20);
-            this.dateTimePicker1.TabIndex = 3;
+            this.dpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpDesde.Location = new System.Drawing.Point(84, 19);
+            this.dpDesde.Name = "dpDesde";
+            this.dpDesde.Size = new System.Drawing.Size(96, 20);
+            this.dpDesde.TabIndex = 3;
             // 
-            // dateTimePicker2
+            // dpHasta
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(275, 17);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(96, 20);
-            this.dateTimePicker2.TabIndex = 4;
+            this.dpHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpHasta.Location = new System.Drawing.Point(275, 17);
+            this.dpHasta.Name = "dpHasta";
+            this.dpHasta.Size = new System.Drawing.Size(96, 20);
+            this.dpHasta.TabIndex = 4;
             // 
-            // dataGridView1
+            // grdDatos
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 48);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(521, 216);
-            this.dataGridView1.TabIndex = 5;
+            this.grdDatos.AllowUserToAddRows = false;
+            this.grdDatos.AllowUserToDeleteRows = false;
+            this.grdDatos.AllowUserToOrderColumns = true;
+            this.grdDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Documento});
+            this.grdDatos.Location = new System.Drawing.Point(12, 48);
+            this.grdDatos.Name = "grdDatos";
+            this.grdDatos.ReadOnly = true;
+            this.grdDatos.Size = new System.Drawing.Size(521, 216);
+            this.grdDatos.TabIndex = 5;
+            // 
+            // Documento
+            // 
+            this.Documento.HeaderText = "Documento";
+            this.Documento.Name = "Documento";
+            this.Documento.ReadOnly = true;
             // 
             // LectorLista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(542, 276);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.grdDatos);
+            this.Controls.Add(this.dpHasta);
+            this.Controls.Add(this.dpDesde);
             this.Controls.Add(this.btnConsultar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "LectorLista";
             this.Text = "LectorLista";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdDatos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -112,9 +125,10 @@
 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnConsultar;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DateTimePicker dpDesde;
+        private System.Windows.Forms.DateTimePicker dpHasta;
+        private System.Windows.Forms.DataGridView grdDatos;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
     }
 }
