@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OKSYSTEMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ASIG_TDOCUMENTO">
+          <Key>
+            <PropertyRef Name="IDTDOCUMENTO" />
+            <PropertyRef Name="FORMULARIO" />
+          </Key>
+          <Property Name="IDTDOCUMENTO" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="FORMULARIO" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TDOCUMENTO">
+          <Key>
+            <PropertyRef Name="IDTDOCUMENTO" />
+          </Key>
+          <Property Name="IDTDOCUMENTO" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="200" />
+          <Property Name="ESTADO" Type="numeric" Precision="1" Scale="0" />
+        </EntityType>
+        <EntityType Name="TDOCUMENTO_SERIE">
+          <Key>
+            <PropertyRef Name="IDTDOCUMENTO" />
+            <PropertyRef Name="SERIE" />
+          </Key>
+          <Property Name="IDTDOCUMENTO" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="SERIE" Type="char" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="IDUSUARIO" />
+          </Key>
+          <Property Name="IDUSUARIO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="CLAVE" Type="varchar" MaxLength="200" />
+          <Property Name="NOMBRES" Type="varchar" MaxLength="200" />
+          <Property Name="ESTADO" Type="numeric" Precision="1" Scale="0" />
+        </EntityType>
+        <EntityContainer Name="OKSYSTEMModelStoreContainer">
+          <EntitySet Name="ASIG_TDOCUMENTO" EntityType="Self.ASIG_TDOCUMENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TDOCUMENTO" EntityType="Self.TDOCUMENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TDOCUMENTO_SERIE" EntityType="Self.TDOCUMENTO_SERIE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OKSYSTEMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="IDUSUARIO" />
+          </Key>
+          <Property Name="IDUSUARIO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLAVE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRES" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="Decimal" Precision="1" Scale="0" />
+        </EntityType>
+        <EntityContainer Name="OKSYSTEMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+          <EntitySet Name="ASIG_TDOCUMENTO" EntityType="OKSYSTEMModel.ASIG_TDOCUMENTO" />
+          <EntitySet Name="TDOCUMENTO" EntityType="OKSYSTEMModel.TDOCUMENTO" />
+          <EntitySet Name="TDOCUMENTO_SERIE" EntityType="OKSYSTEMModel.TDOCUMENTO_SERIE" />
+        </EntityContainer>
+        <EntityType Name="ASIG_TDOCUMENTO">
+          <Key>
+            <PropertyRef Name="IDTDOCUMENTO" />
+            <PropertyRef Name="FORMULARIO" />
+          </Key>
+          <Property Name="IDTDOCUMENTO" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="FORMULARIO" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TDOCUMENTO">
+          <Key>
+            <PropertyRef Name="IDTDOCUMENTO" />
+          </Key>
+          <Property Name="IDTDOCUMENTO" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="Decimal" Precision="1" Scale="0" />
+        </EntityType>
+        <EntityType Name="TDOCUMENTO_SERIE">
+          <Key>
+            <PropertyRef Name="IDTDOCUMENTO" />
+            <PropertyRef Name="SERIE" />
+          </Key>
+          <Property Name="IDTDOCUMENTO" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="SERIE" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OKSYSTEMModelStoreContainer" CdmEntityContainer="OKSYSTEMEntities">
+          <EntitySetMapping Name="USUARIO">
+            <EntityTypeMapping TypeName="OKSYSTEMModel.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="IDUSUARIO" ColumnName="IDUSUARIO" />
+                <ScalarProperty Name="CLAVE" ColumnName="CLAVE" />
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ASIG_TDOCUMENTO">
+            <EntityTypeMapping TypeName="OKSYSTEMModel.ASIG_TDOCUMENTO">
+              <MappingFragment StoreEntitySet="ASIG_TDOCUMENTO">
+                <ScalarProperty Name="FORMULARIO" ColumnName="FORMULARIO" />
+                <ScalarProperty Name="IDTDOCUMENTO" ColumnName="IDTDOCUMENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TDOCUMENTO">
+            <EntityTypeMapping TypeName="OKSYSTEMModel.TDOCUMENTO">
+              <MappingFragment StoreEntitySet="TDOCUMENTO">
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="IDTDOCUMENTO" ColumnName="IDTDOCUMENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TDOCUMENTO_SERIE">
+            <EntityTypeMapping TypeName="OKSYSTEMModel.TDOCUMENTO_SERIE">
+              <MappingFragment StoreEntitySet="TDOCUMENTO_SERIE">
+                <ScalarProperty Name="SERIE" ColumnName="SERIE" />
+                <ScalarProperty Name="IDTDOCUMENTO" ColumnName="IDTDOCUMENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
