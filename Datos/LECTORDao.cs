@@ -9,15 +9,12 @@ namespace Datos
 {
     public class LECTORDao
     {
+        Conexion cn = new Conexion();
         public List<LECTOR> GetLista(DateTime desde, DateTime hasta)
-        {
-            using (OKSYSTEMEntities db = new OKSYSTEMEntities())
-            {
+        {           
                 List<LECTOR> u;
-                u = db.LECTOR.Where(c => c.FECHA >= desde && c.FECHA <= hasta).ToList();
-
-                return u;
-            }
+                u = Conexion.db.LECTOR.Where(c => c.FECHA >= desde && c.FECHA <= hasta).ToList();
+                return u;            
         }
 
         public LECTOR GetLector(String id)
