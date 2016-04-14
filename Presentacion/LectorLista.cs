@@ -16,12 +16,16 @@ namespace Presentacion
     {
         List<LECTOR> lista = new List<LECTOR>();
 
+        List<RESPONSABLE> responsables = new List<RESPONSABLE>();
+
         public LectorLista()
         {
             InitializeComponent();
 
             grdDatos.AutoGenerateColumns = false;
             grdDatos.ColumnCount = 6;
+
+            responsables = ResponsableCn.GetResponsables();
 
             //Add Columns
             ///grdDatos.Columns[0].Name = "CustomerId";
@@ -78,18 +82,31 @@ namespace Presentacion
                 dr[2] = lista[i].NUMERO;
                 dr[3] = lista[i].FECHA;
                 dr[4] = lista[i].IDRESPONSABLE;
-                if (lista[i].RESPONSABLE == null)
+                if (dr[4] != null)
                 {
                     dr[5] = "";
+                    for (int j = 0; j< responsables.Count; j++)
+                    {
+                        if (responsables[j].IDRESPONSABLE.Equals(lista[i].IDRESPONSABLE))
+                        {
+                            dr[5] = responsables[j].NOMBRES;
+                        }
+                    }
                 }
-                else {
-                    dr[5] = lista[i].RESPONSABLE.NOMBRES;
+                else
+                {
+                    dr[5] = "";
                 }
                 dt.Rows.Add(dr);
             }
 
             
             grdDatos.DataSource = dt;
+        }
+
+        private void LectorLista_Load(object sender, EventArgs e)
+        {
+
         }
     }
 

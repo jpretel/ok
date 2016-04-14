@@ -42,6 +42,7 @@
     <Compile Include="ASIG_TDOCUMENTOcn.cs" />
     <Compile Include="LECTORCn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RESPONSABLECn.cs" />
     <Compile Include="UsuarioCn.cs" />
   </ItemGroup>
   <ItemGroup>

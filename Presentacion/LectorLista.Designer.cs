@@ -41,7 +41,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(36, 23);
+            this.label1.Location = new System.Drawing.Point(12, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 0;
@@ -50,7 +50,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(220, 23);
+            this.label2.Location = new System.Drawing.Point(158, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 1;
@@ -58,7 +58,7 @@
             // 
             // btnConsultar
             // 
-            this.btnConsultar.Location = new System.Drawing.Point(458, 19);
+            this.btnConsultar.Location = new System.Drawing.Point(301, 8);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(75, 23);
             this.btnConsultar.TabIndex = 2;
@@ -69,7 +69,7 @@
             // dpDesde
             // 
             this.dpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpDesde.Location = new System.Drawing.Point(84, 19);
+            this.dpDesde.Location = new System.Drawing.Point(56, 9);
             this.dpDesde.Name = "dpDesde";
             this.dpDesde.Size = new System.Drawing.Size(96, 20);
             this.dpDesde.TabIndex = 3;
@@ -77,7 +77,7 @@
             // dpHasta
             // 
             this.dpHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpHasta.Location = new System.Drawing.Point(275, 17);
+            this.dpHasta.Location = new System.Drawing.Point(199, 9);
             this.dpHasta.Name = "dpHasta";
             this.dpHasta.Size = new System.Drawing.Size(96, 20);
             this.dpHasta.TabIndex = 4;
@@ -87,13 +87,16 @@
             this.grdDatos.AllowUserToAddRows = false;
             this.grdDatos.AllowUserToDeleteRows = false;
             this.grdDatos.AllowUserToOrderColumns = true;
+            this.grdDatos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grdDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Documento});
-            this.grdDatos.Location = new System.Drawing.Point(12, 48);
+            this.grdDatos.Location = new System.Drawing.Point(12, 37);
             this.grdDatos.Name = "grdDatos";
             this.grdDatos.ReadOnly = true;
-            this.grdDatos.Size = new System.Drawing.Size(521, 216);
+            this.grdDatos.Size = new System.Drawing.Size(612, 325);
             this.grdDatos.TabIndex = 5;
             // 
             // Documento
@@ -106,7 +109,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(542, 276);
+            this.ClientSize = new System.Drawing.Size(633, 374);
             this.Controls.Add(this.grdDatos);
             this.Controls.Add(this.dpHasta);
             this.Controls.Add(this.dpDesde);
@@ -115,6 +118,7 @@
             this.Controls.Add(this.label1);
             this.Name = "LectorLista";
             this.Text = "LectorLista";
+            this.Load += new System.EventHandler(this.LectorLista_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdDatos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
