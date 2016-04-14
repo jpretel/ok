@@ -19,35 +19,26 @@ namespace Datos
 
         public LECTOR GetLector(String id)
         {
-            using (OKSYSTEMEntities db = new OKSYSTEMEntities())
-            {
+            
                 LECTOR u;
-                u = db.LECTOR.Where(c => c.ID == id).FirstOrDefault();
+                u = Conexion.db.LECTOR.Where(c => c.ID == id).FirstOrDefault();
 
                 return u;
-            }
+            
         }
 
         public void InsertLECTOR(LECTOR lector)
         {
-            using (OKSYSTEMEntities db = new OKSYSTEMEntities())
-            {
-                db.LECTOR.Add(lector);
+            Conexion.db.LECTOR.Add(lector);
 
-                db.SaveChanges();
-            }
+            Conexion.db.SaveChanges();
         }
 
         public void UpdateLECTOR(LECTOR lector)
         {
-            using (OKSYSTEMEntities db = new OKSYSTEMEntities())
-            {
-                db.LECTOR.Attach(lector);
-                db.Entry(lector).State = EntityState.Modified;
-                db.SaveChanges();
-            }
-
-            
+            Conexion.db.LECTOR.Attach(lector);
+            Conexion.db.Entry(lector).State = EntityState.Modified;
+            Conexion.db.SaveChanges();
         }
     }
 }
