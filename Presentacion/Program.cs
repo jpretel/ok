@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using Entidad;
 using System.Threading;
+using Datos;
 
 namespace Presentacion
 {
@@ -11,6 +10,7 @@ namespace Presentacion
     {
         public static USUARIO usuario;
         public static Inicio inicio;
+        public static Conexion cn = new Conexion();
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -19,7 +19,16 @@ namespace Presentacion
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            if (cn.FExist)
+            {
+                Application.Run(new Login());
+            }
+            else {
+                MessageBox.Show("No existe archivo de Configuracion");
+                Application.Run(new Configini());
+            }
+
+            
         }
 
         static object locker = new object();

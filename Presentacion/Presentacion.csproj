@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configini.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configini.Designer.cs">
+      <DependentUpon>Configini.cs</DependentUpon>
+    </Compile>
     <Compile Include="LectorDoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +83,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Configini.resx">
+      <DependentUpon>Configini.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LectorDoc.resx">
       <DependentUpon>LectorDoc.cs</DependentUpon>
     </EmbeddedResource>
