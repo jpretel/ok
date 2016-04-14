@@ -92,6 +92,8 @@ namespace Presentacion
                     Inicio i = new Inicio();
                     i.Visible = true;
                     this.Visible = false;
+
+                    Program.inicio = i;
                 }
                 else
                 {

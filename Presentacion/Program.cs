@@ -10,6 +10,7 @@ namespace Presentacion
     public static class Program
     {
         public static USUARIO usuario;
+        public static Inicio inicio;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

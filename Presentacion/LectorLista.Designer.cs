@@ -34,7 +34,6 @@
             this.dpDesde = new System.Windows.Forms.DateTimePicker();
             this.dpHasta = new System.Windows.Forms.DateTimePicker();
             this.grdDatos = new System.Windows.Forms.DataGridView();
-            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,7 +63,7 @@
             this.btnConsultar.TabIndex = 2;
             this.btnConsultar.Text = "Consultar";
             this.btnConsultar.UseVisualStyleBackColor = true;
-            this.btnConsultar.Click += new System.EventHandler(this.button1_Click);
+            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
             // dpDesde
             // 
@@ -91,19 +90,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grdDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Documento});
             this.grdDatos.Location = new System.Drawing.Point(12, 37);
             this.grdDatos.Name = "grdDatos";
             this.grdDatos.ReadOnly = true;
             this.grdDatos.Size = new System.Drawing.Size(612, 325);
             this.grdDatos.TabIndex = 5;
-            // 
-            // Documento
-            // 
-            this.Documento.HeaderText = "Documento";
-            this.Documento.Name = "Documento";
-            this.Documento.ReadOnly = true;
+            this.grdDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellContentClick);
+            this.grdDatos.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dobleClick);
             // 
             // LectorLista
             // 
@@ -133,6 +126,5 @@
         private System.Windows.Forms.DateTimePicker dpHasta;
         private System.Windows.Forms.DataGridView grdDatos;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
     }
 }

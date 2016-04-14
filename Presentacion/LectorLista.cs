@@ -52,7 +52,7 @@ namespace Presentacion
             llenar();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnConsultar_Click(object sender, EventArgs e)
         {
             DateTime desde, hasta;
             desde = dpDesde.Value;
@@ -105,6 +105,22 @@ namespace Presentacion
         }
 
         private void LectorLista_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        public void dobleClick(Object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+            if (e.RowIndex >= 0)
+            {
+                LectorDoc frm = new LectorDoc(lista[e.RowIndex].ID);
+                frm.MdiParent = Program.inicio;
+                frm.Visible = true;
+            }
+        }
+
+        private void grdDatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

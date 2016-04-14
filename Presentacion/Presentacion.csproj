@@ -77,6 +77,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="LectorDoc.resx">
+      <DependentUpon>LectorDoc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LectorLista.resx">
       <DependentUpon>LectorLista.cs</DependentUpon>
     </EmbeddedResource>
