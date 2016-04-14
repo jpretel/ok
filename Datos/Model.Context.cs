@@ -8,6 +8,7 @@
 //------------------------------------------------------------------------------
 
 using Entidad;
+using System.Data.Entity.Core.EntityClient;
 
 namespace Datos
 {
@@ -17,11 +18,26 @@ namespace Datos
     
     public partial class OKSYSTEMEntities : DbContext
     {
-        public OKSYSTEMEntities()
-            : base("name=OKSYSTEMEntities")
+        public OKSYSTEMEntities(String abc)
+            :base(abc)
         {
         }
-    
+
+        public static OKSYSTEMEntities Create(string providerConnectionString)
+        {
+            var entityBuilder = new EntityConnectionStringBuilder();
+
+            // use your ADO.NET connection string
+            entityBuilder.ProviderConnectionString = providerConnectionString;
+
+            entityBuilder.Provider = "System.Data.SqlClient";
+
+            // Set the Metadata location.
+            entityBuilder.Metadata = "res://*/Model.csdl|res://*/Model.ssdl|res://*/Model.msl";
+
+            return new OKSYSTEMEntities(entityBuilder.ConnectionString);
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

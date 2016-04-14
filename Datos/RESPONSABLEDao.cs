@@ -8,12 +8,10 @@ namespace Datos
 {
     public class RESPONSABLEDao
     {
+        Conexion cn = new Conexion();
         public List<RESPONSABLE> GetResponsables()
         {
-            using (OKSYSTEMEntities db = new OKSYSTEMEntities())
-            {
-                return db.RESPONSABLE.ToList();
-            }
+                return Conexion.db.RESPONSABLE.ToList();
         }
     }
 }

@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ASIG_TDOCUMENTODao.cs" />
+    <Compile Include="Conexion.cs" />
     <Compile Include="LECTORDao.cs" />
     <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>

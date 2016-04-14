@@ -8,33 +8,23 @@ namespace Datos
 {
     public class UsuarioDao
     {
+        Conexion cn = new Conexion();    
         public List<USUARIO> GetUsuarios()
-        {
-            using(OKSYSTEMEntities db = new OKSYSTEMEntities())
-            {
-                return db.USUARIO.ToList();
-            }
+        {                       
+                return Conexion.db.USUARIO.ToList();            
         }
 
         public void CrearUsuario (USUARIO usuario)
         {
-            using(OKSYSTEMEntities db = new OKSYSTEMEntities())
-            {
-                db.USUARIO.Add(usuario);
-
-                db.SaveChanges();
-            }
+            Conexion.db.USUARIO.Add(usuario);
+            Conexion.db.SaveChanges();            
         }
 
         public USUARIO GetIDusuario(String idusuario)
-        {
-            using(OKSYSTEMEntities db = new OKSYSTEMEntities())
-            {
-                USUARIO u;
-                u = db.USUARIO.Where(c => c.IDUSUARIO == idusuario).FirstOrDefault();
-
-                return u;
-            }
+        {            
+                USUARIO u;                
+                u = Conexion.db.USUARIO.Where(c => c.IDUSUARIO == idusuario).FirstOrDefault();
+                return u;           
         }
 
     }
