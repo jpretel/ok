@@ -44,6 +44,7 @@
             this.btnAnular = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnInsertar = new System.Windows.Forms.Button();
+            this.btnBorrarLinea = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdDet)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,7 +88,6 @@
             // grdDet
             // 
             this.grdDet.AllowUserToAddRows = false;
-            this.grdDet.AllowUserToDeleteRows = false;
             this.grdDet.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -185,11 +185,23 @@
             this.btnInsertar.UseVisualStyleBackColor = true;
             this.btnInsertar.Click += new System.EventHandler(this.button1_Click);
             // 
+            // btnBorrarLinea
+            // 
+            this.btnBorrarLinea.Location = new System.Drawing.Point(408, 84);
+            this.btnBorrarLinea.Name = "btnBorrarLinea";
+            this.btnBorrarLinea.Size = new System.Drawing.Size(122, 23);
+            this.btnBorrarLinea.TabIndex = 15;
+            this.btnBorrarLinea.Text = "Borrar Linea";
+            this.btnBorrarLinea.UseVisualStyleBackColor = true;
+            this.btnBorrarLinea.Visible = false;
+            this.btnBorrarLinea.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // LectorDoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(541, 384);
+            this.Controls.Add(this.btnBorrarLinea);
             this.Controls.Add(this.btnInsertar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnAnular);
@@ -231,5 +243,6 @@
         private System.Windows.Forms.Button btnAnular;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnInsertar;
+        private System.Windows.Forms.Button btnBorrarLinea;
     }
 }

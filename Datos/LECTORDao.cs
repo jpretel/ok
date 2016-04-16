@@ -49,5 +49,12 @@ namespace Datos
 
             Conexion.db.Entry(lector).State = EntityState.Detached;
         }
+
+        public int maxNumero(String serie)
+        {
+            var max = Conexion.db.LECTOR.Where(c=> c.SERIE.Equals(serie)).Max(c => c.NUMERO).GetValueOrDefault();
+
+            return max;
+        }
     }
 }

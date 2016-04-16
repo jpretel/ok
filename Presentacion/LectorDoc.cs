@@ -191,7 +191,7 @@ namespace Presentacion
             setSeries(cabecera.IDTDOCUMENTO);
 
             cabecera.SERIE = tSeries[0].SERIE;
-
+            cabecera.NUMERO = LECTORCn.maxNumero(cabecera.SERIE) + 1;
             cabecera.FECHA = DateTime.Now;
 
             detalle = new List<LECTOR_DETALLE>();
@@ -266,6 +266,15 @@ namespace Presentacion
                     }
                     llenarVista();
                 }
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Int32 selectedRowCount = grdDet.Rows.GetRowCount(DataGridViewElementStates.Selected);
+
+            if (selectedRowCount == 1) {
+                grdDet.SelectedRows[0].Index.ToString();
             }
         }
     }

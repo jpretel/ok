@@ -33,5 +33,11 @@ namespace Negocio
             LECTORDao u = new LECTORDao();
             u.UpdateLECTOR(lector);
         }
+
+        public static int maxNumero(String serie)
+        {
+            LECTORDao u = new LECTORDao();
+            return u.maxNumero(serie);
+        }
     }
 }
