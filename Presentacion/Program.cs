@@ -21,6 +21,7 @@ namespace Presentacion
             Application.SetCompatibleTextRenderingDefault(false);
             if (cn.FExist)
             {
+                //new Login().Show();
                 Application.Run(new Login());
             }
             else {

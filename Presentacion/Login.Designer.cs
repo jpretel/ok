@@ -101,6 +101,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtIdUsuario);
             this.Name = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio";
             this.ResumeLayout(false);
             this.PerformLayout();

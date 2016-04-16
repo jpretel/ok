@@ -15,6 +15,7 @@ namespace Presentacion
         
         public Inicio()
         {
+
             InitializeComponent();
         }
 

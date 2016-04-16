@@ -39,7 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LECTOR_DETALLECn.cs" />
+    <Compile Include="PRODUCTOcn.cs" />
     <Compile Include="ASIG_TDOCUMENTOcn.cs" />
+    <Compile Include="TDOCUMENTO_SERIECn.cs" />
     <Compile Include="LECTORCn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RESPONSABLECn.cs" />

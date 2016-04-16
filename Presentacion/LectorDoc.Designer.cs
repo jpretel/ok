@@ -33,7 +33,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.grdDet = new System.Windows.Forms.DataGridView();
             this.txtDocumento = new System.Windows.Forms.TextBox();
             this.txtSerie = new System.Windows.Forms.TextBox();
             this.txtNumero = new System.Windows.Forms.TextBox();
@@ -43,7 +43,8 @@
             this.btnGrabar = new System.Windows.Forms.Button();
             this.btnAnular = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.btnInsertar = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.grdDet)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -83,16 +84,19 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Fecha";
             // 
-            // dataGridView1
+            // grdDet
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.grdDet.AllowUserToAddRows = false;
+            this.grdDet.AllowUserToDeleteRows = false;
+            this.grdDet.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 76);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(518, 297);
-            this.dataGridView1.TabIndex = 4;
+            this.grdDet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdDet.Location = new System.Drawing.Point(12, 113);
+            this.grdDet.Name = "grdDet";
+            this.grdDet.ReadOnly = true;
+            this.grdDet.Size = new System.Drawing.Size(518, 260);
+            this.grdDet.TabIndex = 4;
             // 
             // txtDocumento
             // 
@@ -131,6 +135,7 @@
             this.btnNuevo.TabIndex = 9;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // btnEditar
             // 
@@ -170,11 +175,22 @@
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             // 
+            // btnInsertar
+            // 
+            this.btnInsertar.Location = new System.Drawing.Point(12, 84);
+            this.btnInsertar.Name = "btnInsertar";
+            this.btnInsertar.Size = new System.Drawing.Size(122, 23);
+            this.btnInsertar.TabIndex = 14;
+            this.btnInsertar.Text = "Insertar Detalle";
+            this.btnInsertar.UseVisualStyleBackColor = true;
+            this.btnInsertar.Click += new System.EventHandler(this.button1_Click);
+            // 
             // LectorDoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(541, 384);
+            this.Controls.Add(this.btnInsertar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnAnular);
             this.Controls.Add(this.btnGrabar);
@@ -184,7 +200,7 @@
             this.Controls.Add(this.txtNumero);
             this.Controls.Add(this.txtSerie);
             this.Controls.Add(this.txtDocumento);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.grdDet);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -192,7 +208,7 @@
             this.Name = "LectorDoc";
             this.Text = "LectorDoc";
             this.Load += new System.EventHandler(this.LectorDoc_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdDet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,7 +220,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView grdDet;
         private System.Windows.Forms.TextBox txtDocumento;
         private System.Windows.Forms.TextBox txtSerie;
         private System.Windows.Forms.TextBox txtNumero;
@@ -214,5 +230,6 @@
         private System.Windows.Forms.Button btnGrabar;
         private System.Windows.Forms.Button btnAnular;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnInsertar;
     }
 }

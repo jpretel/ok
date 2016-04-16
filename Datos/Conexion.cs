@@ -8,13 +8,18 @@ namespace Datos
         public static OKSYSTEMEntities db;
         public string docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         public string archivo = @"\configini.txt";
-        public string strConexion = "";
+        public static string strConexion = "";
         public bool FExist { get; set; }
 
         public Conexion() {
             if (LeerArchivo()) {
                 db = OKSYSTEMEntities.Create(strConexion);
             }            
+        }
+
+        public static OKSYSTEMEntities getConexion()
+        {
+            return OKSYSTEMEntities.Create(strConexion);
         }
 
         public void EscribirArchivo(string origen,string usuario,string clave,string basedatos) {
@@ -63,5 +68,6 @@ namespace Datos
             return FExist;
         }
 
+        
     }
 }

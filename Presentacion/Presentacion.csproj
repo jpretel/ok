@@ -69,6 +69,12 @@
     <Compile Include="LectorLista.Designer.cs">
       <DependentUpon>LectorLista.cs</DependentUpon>
     </Compile>
+    <Compile Include="LectorNuevaLinea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LectorNuevaLinea.Designer.cs">
+      <DependentUpon>LectorNuevaLinea.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LectorLista.resx">
       <DependentUpon>LectorLista.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LectorNuevaLinea.resx">
+      <DependentUpon>LectorNuevaLinea.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

@@ -50,5 +50,6 @@ namespace Datos
         public virtual DbSet<TDOCUMENTO> TDOCUMENTO { get; set; }
         public virtual DbSet<TDOCUMENTO_SERIE> TDOCUMENTO_SERIE { get; set; }
         public virtual DbSet<USUARIO> USUARIO { get; set; }
+        public virtual DbSet<PRODUCTO> PRODUCTO { get; set; }
     }
 }

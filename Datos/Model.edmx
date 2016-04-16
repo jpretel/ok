@@ -35,6 +35,14 @@
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="200" />
           <Property Name="CANTIDAD" Type="numeric" Precision="17" Scale="6" />
         </EntityType>
+        <EntityType Name="PRODUCTO">
+          <Key>
+            <PropertyRef Name="IDPRODUCTO" />
+          </Key>
+          <Property Name="IDPRODUCTO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="200" />
+          <Property Name="IDMEDIDA" Type="varchar" MaxLength="10" />
+        </EntityType>
         <EntityType Name="RESPONSABLE">
           <Key>
             <PropertyRef Name="IDRESPONSABLE" />
@@ -95,6 +103,7 @@
           <EntitySet Name="ASIG_TDOCUMENTO" EntityType="Self.ASIG_TDOCUMENTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LECTOR" EntityType="Self.LECTOR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LECTOR_DETALLE" EntityType="Self.LECTOR_DETALLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RESPONSABLE" EntityType="Self.RESPONSABLE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TDOCUMENTO" EntityType="Self.TDOCUMENTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TDOCUMENTO_SERIE" EntityType="Self.TDOCUMENTO_SERIE" Schema="dbo" store:Type="Tables" />
@@ -145,6 +154,14 @@
           <Property Name="DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="CANTIDAD" Type="Decimal" Precision="17" Scale="6" />
           <NavigationProperty Name="LECTOR" Relationship="Self.PF_LECTOR_DETALLE_LECTOR" FromRole="LECTOR_DETALLE" ToRole="LECTOR" />
+        </EntityType>
+        <EntityType Name="PRODUCTO">
+          <Key>
+            <PropertyRef Name="IDPRODUCTO" />
+          </Key>
+          <Property Name="IDPRODUCTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="IDMEDIDA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="RESPONSABLE">
           <Key>
@@ -207,6 +224,7 @@
           <EntitySet Name="ASIG_TDOCUMENTO" EntityType="Self.ASIG_TDOCUMENTO" />
           <EntitySet Name="LECTOR" EntityType="Self.LECTOR" />
           <EntitySet Name="LECTOR_DETALLE" EntityType="Self.LECTOR_DETALLE" />
+          <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" />
           <EntitySet Name="RESPONSABLE" EntityType="Self.RESPONSABLE" />
           <EntitySet Name="TDOCUMENTO" EntityType="Self.TDOCUMENTO" />
           <EntitySet Name="TDOCUMENTO_SERIE" EntityType="Self.TDOCUMENTO_SERIE" />
@@ -254,6 +272,15 @@
                 <ScalarProperty Name="IDPRODUCTO" ColumnName="IDPRODUCTO" />
                 <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
                 <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTO">
+            <EntityTypeMapping TypeName="OKSYSTEMModel.PRODUCTO">
+              <MappingFragment StoreEntitySet="PRODUCTO">
+                <ScalarProperty Name="IDPRODUCTO" ColumnName="IDPRODUCTO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="IDMEDIDA" ColumnName="IDMEDIDA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

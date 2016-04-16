@@ -34,6 +34,7 @@
             this.dpDesde = new System.Windows.Forms.DateTimePicker();
             this.dpHasta = new System.Windows.Forms.DateTimePicker();
             this.grdDatos = new System.Windows.Forms.DataGridView();
+            this.btnNuevo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,11 +99,22 @@
             this.grdDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDatos_CellContentClick);
             this.grdDatos.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dobleClick);
             // 
+            // btnNuevo
+            // 
+            this.btnNuevo.Location = new System.Drawing.Point(546, 6);
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(75, 23);
+            this.btnNuevo.TabIndex = 6;
+            this.btnNuevo.Text = "Nuevo";
+            this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.Click += new System.EventHandler(this.button1_Click);
+            // 
             // LectorLista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(633, 374);
+            this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.grdDatos);
             this.Controls.Add(this.dpHasta);
             this.Controls.Add(this.dpDesde);
@@ -126,5 +138,6 @@
         private System.Windows.Forms.DateTimePicker dpHasta;
         private System.Windows.Forms.DataGridView grdDatos;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnNuevo;
     }
 }

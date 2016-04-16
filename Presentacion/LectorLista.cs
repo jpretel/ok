@@ -124,6 +124,13 @@ namespace Presentacion
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            LectorDoc frm = new LectorDoc(null);
+            frm.MdiParent = Program.inicio;
+            frm.Visible = true;
+        }
     }
 
     
