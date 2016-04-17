@@ -24,6 +24,7 @@ namespace Datos
         public void DeleteLector(String id)
         {
             Conexion.db.LECTOR_DETALLE.RemoveRange(Conexion.db.LECTOR_DETALLE.Where(x => x.ID == id));
+            Conexion.db.SaveChanges();
         }
 
         public void InsertLECTOR_DETALLE(LECTOR_DETALLE lector)

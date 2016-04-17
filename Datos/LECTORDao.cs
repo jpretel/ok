@@ -33,6 +33,14 @@ namespace Datos
             return u;
             
         }
+        
+        
+        public void CrearDocumentoNisira(String id)
+        {
+            
+            Conexion.db.Database.ExecuteSqlCommand("dbo.SP_CREASALIDANISIRA {0}", id);
+        }
+        
 
         public void InsertLECTOR(LECTOR lector)
         {

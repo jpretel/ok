@@ -39,5 +39,11 @@ namespace Negocio
             LECTORDao u = new LECTORDao();
             return u.maxNumero(serie);
         }
+
+        public static void CrearDocumentoNisira(string id)
+        {
+            LECTORDao dao = new LECTORDao();
+            dao.CrearDocumentoNisira(id);
+        }
     }
 }

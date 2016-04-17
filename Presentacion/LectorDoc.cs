@@ -139,6 +139,8 @@ namespace Presentacion
                 LECTOR_DETALLECn.InsertLECTOR_DETALLE(dd);
             }
 
+            LECTORCn.CrearDocumentoNisira(id);
+
             llenarDesdeBD(id);
             llenarVista();
 
