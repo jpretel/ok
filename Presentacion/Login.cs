@@ -14,10 +14,13 @@ namespace Presentacion
 {
     public partial class Login : Form
     {
+        public USUARIO usuario { set; get; }
+
         public Login()
         {
             InitializeComponent();
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -73,28 +76,32 @@ namespace Presentacion
 
         private void button6_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
+    
         private void button5_Click(object sender, EventArgs e)
         {
             var idusuario = txtIdUsuario.Text;
             var clave = txtClave.Text;
 
             USUARIO u = UsuarioCn.GetIDusuario(idusuario);
-            
+
+            Program.usuario = null;
             if (u != null)
             {
                 if (clave == desencriptar(u.CLAVE))
                 {
+                    this.DialogResult = DialogResult.OK;
                     Program.usuario = u;
-
+                    /*
                     Inicio i = new Inicio();
                     i.Visible = true;
                     this.Visible = false;
                     Program.inicio = i;
-                    
-                    
+                    */
+                    this.Close();    
                 }
                 else
                 {

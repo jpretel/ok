@@ -15,8 +15,11 @@ namespace Presentacion
         
         public Inicio()
         {
-
             InitializeComponent();
+
+            Login l = new Login();
+            l.ShowDialog(this);
+            
         }
 
         private void ShowNewForm(object sender, EventArgs e)
@@ -66,7 +69,14 @@ namespace Presentacion
 
         private void Inicio_Load(object sender, EventArgs e)
         {
-            this.stUsuario.Text = "USUARIO: " + Program.usuario.NOMBRES;
+            if (Program.usuario != null)
+            {
+                this.stUsuario.Text = "USUARIO: " + Program.usuario.NOMBRES;
+            }
+            else
+            {
+                this.Close();
+            }
         }
     }
 }

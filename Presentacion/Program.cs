@@ -22,7 +22,7 @@ namespace Presentacion
             if (cn.FExist)
             {
                 //new Login().Show();
-                Application.Run(new Login());
+                Application.Run(new Inicio());
             }
             else {
                 MessageBox.Show("No existe archivo de Configuracion");
