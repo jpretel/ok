@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Entidad;
 using Negocio;
+using System.Globalization;
 
 namespace Presentacion
 {
@@ -22,6 +23,7 @@ namespace Presentacion
 
         //Catalogos
         List<PRODUCTO> productos;
+        List<RESPONSABLE> responsables;
 
         String estado = "VISTA";
         DataTable dt = new DataTable();
@@ -42,6 +44,22 @@ namespace Presentacion
             }
             
             InitializeComponent();
+
+            responsables = ResponsableCn.GetResponsables();
+
+            var mapResponsables = new BindingList<KeyValuePair<string, string>>();
+
+            mapResponsables.Add(new KeyValuePair<string, string>(null, "[Seleccionar]"));
+
+            foreach (RESPONSABLE r in responsables)
+            {
+                mapResponsables.Add(new KeyValuePair<string, string>(r.IDRESPONSABLE, r.NOMBRES));
+            }
+
+            cboResponsable.DataSource = mapResponsables;
+            cboResponsable.ValueMember = "Key";
+            cboResponsable.DisplayMember = "Value";
+            cboResponsable.SelectedIndex = 0;
 
             dt.Columns.Add(new DataColumn("Item"));
             dt.Columns.Add(new DataColumn("IdProducto"));
@@ -89,6 +107,20 @@ namespace Presentacion
             txtSerie.Text = cabecera.SERIE;
             txtNumero.Text = cabecera.NUMERO.ToString().PadLeft(4,'0');
             txtFecha.Value = cabecera.FECHA.Value;
+
+            int i = 0;
+
+            if (cabecera.IDRESPONSABLE != null) { 
+                for(int j = 0; j<responsables.Count; j++)
+                {
+                    if (cabecera.IDRESPONSABLE.Equals(responsables[j].IDRESPONSABLE))
+                    {
+                        i = j+1;
+                    }
+                }
+            }
+            cboResponsable.SelectedIndex = i;
+
             switch(cabecera.ESTADO)
             {
                 case 1:
@@ -98,18 +130,24 @@ namespace Presentacion
                     txtEstado.Text = "ANULADO";
                     break;
             }
-            
-            
 
+            llenarDetalleVista();
+            
+        }
+
+        private void llenarDetalleVista()
+        {
             dt.Clear();
 
-            
-            foreach (LECTOR_DETALLE d in detalle) {
+
+            foreach (LECTOR_DETALLE d in detalle)
+            {
                 String producto, idmedida;
                 producto = "";
                 idmedida = "";
 
-                foreach (PRODUCTO p in productos) {
+                foreach (PRODUCTO p in productos)
+                {
                     if (p.IDPRODUCTO.Trim().Equals(d.IDPRODUCTO.Trim()))
                     {
                         producto = p.DESCRIPCION;
@@ -128,6 +166,16 @@ namespace Presentacion
             cabecera.SERIE = txtSerie.Text;
             cabecera.NUMERO = int.Parse(txtNumero.Text);
             cabecera.FECHA = txtFecha.Value;
+            int i = cboResponsable.SelectedIndex;
+
+            if (i == 0)
+            {
+                cabecera.IDRESPONSABLE = null;
+            } else
+            {
+                cabecera.IDRESPONSABLE = responsables[i - 1].IDRESPONSABLE;
+            }
+            ///cboResponsable.SelectedText = 
         }
 
         private void btnGrabar_Click(object sender, EventArgs e)
@@ -179,7 +227,10 @@ namespace Presentacion
             }
 
             txtFecha.Enabled = bandera;
+            cboResponsable.Enabled = bandera;
+
             btnInsertar.Enabled = bandera;
+            btnBorrarLinea.Enabled = bandera;
 
             btnNuevo.Enabled = !bandera;
             btnEditar.Enabled = !bandera;
@@ -187,6 +238,22 @@ namespace Presentacion
             btnAnular.Enabled = !bandera;
             btnEliminar.Enabled = !bandera;
 
+            grdDet.ReadOnly = !bandera;
+
+            if (bandera)
+            {
+                foreach (DataGridViewColumn dc in grdDet.Columns)
+                {
+                    if (dc.Index.Equals(4))
+                    {
+                        dc.ReadOnly = false;
+                    }
+                    else
+                    {
+                        dc.ReadOnly = true;
+                    }
+                }
+            }
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -283,7 +350,7 @@ namespace Presentacion
                     {
                         bandera = false;
                     }
-                    llenarVista();
+                    llenarDetalleVista();
                 }
             }
         }
@@ -291,9 +358,11 @@ namespace Presentacion
         private void button1_Click_1(object sender, EventArgs e)
         {
             Int32 selectedRowCount = grdDet.Rows.GetRowCount(DataGridViewElementStates.Selected);
-
+            
             if (selectedRowCount == 1) {
-                grdDet.SelectedRows[0].Index.ToString();
+                detalle.RemoveAt(grdDet.SelectedRows[0].Index);
+
+                llenarDetalleVista();
             }
         }
 
@@ -341,6 +410,36 @@ namespace Presentacion
                     }
                     break;
             }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            DialogResult dr;
+            dr = MessageBox.Show(this, "Desea eliminar el documento?", "OK", MessageBoxButtons.YesNo);
+            
+            if (DialogResult.Yes.Equals(dr))
+            {
+                String id = cabecera.ID;
+                LECTOR_DETALLECn.DeleteLector(id);
+                LECTORCn.DeleteLector(id);
+
+                LECTORCn.BorrarDocumentoNisira(id);
+            }
+        }
+
+        private void grdDet_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 4) { 
+                var editedCell = this.grdDet.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                var newValue = editedCell.Value;
+                String val = newValue.ToString();
+                detalle[e.RowIndex].CANTIDAD = decimal.Parse(val);
+            }
+        }
+
+        private void grdDet_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

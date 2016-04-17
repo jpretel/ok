@@ -46,6 +46,8 @@
             this.btnInsertar = new System.Windows.Forms.Button();
             this.btnBorrarLinea = new System.Windows.Forms.Button();
             this.txtEstado = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cboResponsable = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdDet)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,15 +91,16 @@
             // grdDet
             // 
             this.grdDet.AllowUserToAddRows = false;
+            this.grdDet.AllowUserToDeleteRows = false;
             this.grdDet.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grdDet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdDet.Location = new System.Drawing.Point(12, 113);
+            this.grdDet.Location = new System.Drawing.Point(12, 136);
             this.grdDet.Name = "grdDet";
-            this.grdDet.ReadOnly = true;
-            this.grdDet.Size = new System.Drawing.Size(518, 260);
+            this.grdDet.Size = new System.Drawing.Size(518, 237);
             this.grdDet.TabIndex = 4;
+            this.grdDet.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDet_CellValueChanged);
             // 
             // txtDocumento
             // 
@@ -176,10 +179,11 @@
             this.btnEliminar.TabIndex = 13;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnInsertar
             // 
-            this.btnInsertar.Location = new System.Drawing.Point(12, 84);
+            this.btnInsertar.Location = new System.Drawing.Point(12, 107);
             this.btnInsertar.Name = "btnInsertar";
             this.btnInsertar.Size = new System.Drawing.Size(122, 23);
             this.btnInsertar.TabIndex = 14;
@@ -189,13 +193,12 @@
             // 
             // btnBorrarLinea
             // 
-            this.btnBorrarLinea.Location = new System.Drawing.Point(408, 84);
+            this.btnBorrarLinea.Location = new System.Drawing.Point(408, 107);
             this.btnBorrarLinea.Name = "btnBorrarLinea";
             this.btnBorrarLinea.Size = new System.Drawing.Size(122, 23);
             this.btnBorrarLinea.TabIndex = 15;
             this.btnBorrarLinea.Text = "Borrar Linea";
             this.btnBorrarLinea.UseVisualStyleBackColor = true;
-            this.btnBorrarLinea.Visible = false;
             this.btnBorrarLinea.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // txtEstado
@@ -207,11 +210,30 @@
             this.txtEstado.Size = new System.Drawing.Size(101, 20);
             this.txtEstado.TabIndex = 16;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(13, 80);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(69, 13);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Responsable";
+            // 
+            // cboResponsable
+            // 
+            this.cboResponsable.FormattingEnabled = true;
+            this.cboResponsable.Location = new System.Drawing.Point(88, 77);
+            this.cboResponsable.Name = "cboResponsable";
+            this.cboResponsable.Size = new System.Drawing.Size(121, 21);
+            this.cboResponsable.TabIndex = 18;
+            // 
             // LectorDoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(541, 384);
+            this.Controls.Add(this.cboResponsable);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.txtEstado);
             this.Controls.Add(this.btnBorrarLinea);
             this.Controls.Add(this.btnInsertar);
@@ -257,5 +279,7 @@
         private System.Windows.Forms.Button btnInsertar;
         private System.Windows.Forms.Button btnBorrarLinea;
         private System.Windows.Forms.TextBox txtEstado;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cboResponsable;
     }
 }

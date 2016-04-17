@@ -28,6 +28,12 @@ namespace Negocio
             u.InsertLECTOR(lector);
         }
 
+        public static void DeleteLector(String id)
+        {
+            LECTORDao u = new LECTORDao();
+            u.DeleteLector(id);
+        }
+
         public static void UpdateLECTOR(LECTOR lector)
         {
             LECTORDao u = new LECTORDao();
@@ -44,6 +50,12 @@ namespace Negocio
         {
             LECTORDao dao = new LECTORDao();
             dao.CrearDocumentoNisira(id);
+        }
+
+        public static void BorrarDocumentoNisira(string id)
+        {
+            LECTORDao dao = new LECTORDao();
+            dao.BorrarDocumentoNisira(id);
         }
     }
 }

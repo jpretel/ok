@@ -21,6 +21,13 @@ namespace Datos
             return u; 
         }
 
+        public void DeleteLector(String id)
+        {
+            Conexion.db.LECTOR.RemoveRange(Conexion.db.LECTOR.Where(x => x.ID == id));
+            Conexion.db.SaveChanges();
+        }
+
+
         public LECTOR GetLector(String id)
         {
             
@@ -40,7 +47,13 @@ namespace Datos
             
             Conexion.db.Database.ExecuteSqlCommand("dbo.SP_CREASALIDANISIRA {0}", id);
         }
-        
+
+        public void BorrarDocumentoNisira(String id)
+        {
+
+            Conexion.db.Database.ExecuteSqlCommand("dbo.SP_ELIMINASALIDANISIRA {0}", id);
+        }
+
 
         public void InsertLECTOR(LECTOR lector)
         {
