@@ -89,6 +89,17 @@ namespace Presentacion
             txtSerie.Text = cabecera.SERIE;
             txtNumero.Text = cabecera.NUMERO.ToString().PadLeft(4,'0');
             txtFecha.Value = cabecera.FECHA.Value;
+            switch(cabecera.ESTADO)
+            {
+                case 1:
+                     txtEstado.Text = "PENDIENTE";
+                    break;
+                case 2:
+                    txtEstado.Text = "ANULADO";
+                    break;
+            }
+            
+            
 
             dt.Clear();
 
@@ -180,8 +191,13 @@ namespace Presentacion
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            edicion(true);
-            estado = "EDITAR";
+            if (cabecera.ESTADO == 1) { 
+                edicion(true);
+                estado = "EDITAR";
+            } else
+            {
+                MessageBox.Show("No puede editar este documento");
+            }
         }
 
         private void nuevo()
@@ -195,6 +211,7 @@ namespace Presentacion
             cabecera.SERIE = tSeries[0].SERIE;
             cabecera.NUMERO = LECTORCn.maxNumero(cabecera.SERIE) + 1;
             cabecera.FECHA = DateTime.Now;
+            cabecera.ESTADO = 1;
 
             detalle = new List<LECTOR_DETALLE>();
         }
@@ -277,6 +294,52 @@ namespace Presentacion
 
             if (selectedRowCount == 1) {
                 grdDet.SelectedRows[0].Index.ToString();
+            }
+        }
+
+        private void btnAnular_Click(object sender, EventArgs e)
+        {
+            DialogResult dr;
+            switch(cabecera.ESTADO)
+            {
+                case 1:
+                     dr = MessageBox.Show(this, "Desea anular el documento", "OK", MessageBoxButtons.YesNo);
+
+                    if (DialogResult.Yes.Equals(dr))
+                    {
+                        cabecera.ESTADO = 2;
+                        LECTORCn.UpdateLECTOR(cabecera);
+
+                        String id = cabecera.ID;
+
+                        LECTORCn.CrearDocumentoNisira(id);
+
+                        llenarDesdeBD(id);
+                        llenarVista();
+
+                        estado = "VISTA";
+                        edicion(false);
+                    }
+                    break;
+                case 2:
+                    dr = MessageBox.Show(this, "El documento está anulado, desea activarlo", "OK", MessageBoxButtons.YesNo);
+
+                    if (DialogResult.Yes.Equals(dr))
+                    {
+                        cabecera.ESTADO = 1;
+                        LECTORCn.UpdateLECTOR(cabecera);
+
+                        String id = cabecera.ID;
+
+                        LECTORCn.CrearDocumentoNisira(id);
+
+                        llenarDesdeBD(id);
+                        llenarVista();
+
+                        estado = "VISTA";
+                        edicion(false);
+                    }
+                    break;
             }
         }
     }

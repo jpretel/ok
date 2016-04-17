@@ -4,80 +4,81 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Alias="Self" Namespace="OKSYSTEMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+    <Schema Namespace="OKSYSTEMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ASIG_TDOCUMENTO">
           <Key>
             <PropertyRef Name="IDTDOCUMENTO" />
             <PropertyRef Name="FORMULARIO" />
           </Key>
-          <Property Name="IDTDOCUMENTO" Nullable="false" MaxLength="3" Type="char" />
-          <Property Name="FORMULARIO" Nullable="false" MaxLength="200" Type="varchar" />
+          <Property Name="IDTDOCUMENTO" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="FORMULARIO" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="LECTOR">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Nullable="false" MaxLength="20" Type="varchar" />
-          <Property Name="IDTDOCUMENTO" MaxLength="3" Type="char" />
-          <Property Name="SERIE" MaxLength="4" Type="char" />
+          <Property Name="ID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="IDTDOCUMENTO" Type="char" MaxLength="3" />
+          <Property Name="SERIE" Type="char" MaxLength="4" />
           <Property Name="NUMERO" Type="int" />
           <Property Name="FECHA" Type="datetime" />
-          <Property Name="IDRESPONSABLE" MaxLength="6" Type="char" />
+          <Property Name="IDRESPONSABLE" Type="char" MaxLength="6" />
+          <Property Name="ESTADO" Type="int" />
         </EntityType>
         <EntityType Name="LECTOR_DETALLE">
           <Key>
             <PropertyRef Name="ID" />
             <PropertyRef Name="ITEM" />
           </Key>
-          <Property Name="ID" Nullable="false" MaxLength="20" Type="varchar" />
-          <Property Name="ITEM" Nullable="false" Type="int" />
-          <Property Name="IDPRODUCTO" MaxLength="20" Type="char" />
-          <Property Name="DESCRIPCION" MaxLength="200" Type="varchar" />
-          <Property Name="CANTIDAD" Precision="17" Scale="6" Type="numeric" />
+          <Property Name="ID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ITEM" Type="int" Nullable="false" />
+          <Property Name="IDPRODUCTO" Type="char" MaxLength="20" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="200" />
+          <Property Name="CANTIDAD" Type="numeric" Precision="17" Scale="6" />
         </EntityType>
         <EntityType Name="PRODUCTO">
           <Key>
             <PropertyRef Name="IDPRODUCTO" />
           </Key>
-          <Property Name="IDPRODUCTO" Nullable="false" MaxLength="50" Type="varchar" />
-          <Property Name="DESCRIPCION" MaxLength="200" Type="varchar" />
-          <Property Name="IDMEDIDA" MaxLength="10" Type="varchar" />
+          <Property Name="IDPRODUCTO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="200" />
+          <Property Name="IDMEDIDA" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="RESPONSABLE">
           <Key>
             <PropertyRef Name="IDRESPONSABLE" />
           </Key>
-          <Property Name="IDRESPONSABLE" Nullable="false" MaxLength="6" Type="char" />
-          <Property Name="NOMBRES" MaxLength="200" Type="varchar" />
+          <Property Name="IDRESPONSABLE" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="NOMBRES" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="TDOCUMENTO">
           <Key>
             <PropertyRef Name="IDTDOCUMENTO" />
           </Key>
-          <Property Name="IDTDOCUMENTO" Nullable="false" MaxLength="3" Type="char" />
-          <Property Name="DESCRIPCION" MaxLength="200" Type="varchar" />
-          <Property Name="ESTADO" Precision="1" Scale="0" Type="numeric" />
+          <Property Name="IDTDOCUMENTO" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="200" />
+          <Property Name="ESTADO" Type="numeric" Precision="1" Scale="0" />
         </EntityType>
         <EntityType Name="TDOCUMENTO_SERIE">
           <Key>
             <PropertyRef Name="IDTDOCUMENTO" />
             <PropertyRef Name="SERIE" />
           </Key>
-          <Property Name="IDTDOCUMENTO" Nullable="false" MaxLength="3" Type="char" />
-          <Property Name="SERIE" Nullable="false" MaxLength="4" Type="char" />
+          <Property Name="IDTDOCUMENTO" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="SERIE" Type="char" MaxLength="4" Nullable="false" />
         </EntityType>
         <EntityType Name="USUARIO">
           <Key>
             <PropertyRef Name="IDUSUARIO" />
           </Key>
-          <Property Name="IDUSUARIO" Nullable="false" MaxLength="30" Type="varchar" />
-          <Property Name="CLAVE" MaxLength="200" Type="varchar" />
-          <Property Name="NOMBRES" MaxLength="200" Type="varchar" />
-          <Property Name="ESTADO" Precision="1" Scale="0" Type="numeric" />
+          <Property Name="IDUSUARIO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="CLAVE" Type="varchar" MaxLength="200" />
+          <Property Name="NOMBRES" Type="varchar" MaxLength="200" />
+          <Property Name="ESTADO" Type="numeric" Precision="1" Scale="0" />
         </EntityType>
         <Association Name="FK_LECTOR_RESPONSABLE">
-          <End Type="Self.RESPONSABLE" Multiplicity="0..1" Role="RESPONSABLE" />
-          <End Type="Self.LECTOR" Multiplicity="*" Role="LECTOR" />
+          <End Role="RESPONSABLE" Type="Self.RESPONSABLE" Multiplicity="0..1" />
+          <End Role="LECTOR" Type="Self.LECTOR" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RESPONSABLE">
               <PropertyRef Name="IDRESPONSABLE" />
@@ -88,8 +89,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="PF_LECTOR_DETALLE_LECTOR">
-          <End Type="Self.LECTOR" Multiplicity="1" Role="LECTOR" />
-          <End Type="Self.LECTOR_DETALLE" Multiplicity="*" Role="LECTOR_DETALLE" />
+          <End Role="LECTOR" Type="Self.LECTOR" Multiplicity="1" />
+          <End Role="LECTOR_DETALLE" Type="Self.LECTOR_DETALLE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LECTOR">
               <PropertyRef Name="ID" />
@@ -109,16 +110,15 @@
           <EntitySet Name="TDOCUMENTO_SERIE" EntityType="Self.TDOCUMENTO_SERIE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_LECTOR_RESPONSABLE" Association="Self.FK_LECTOR_RESPONSABLE">
-            <End EntitySet="RESPONSABLE" Role="RESPONSABLE" />
-            <End EntitySet="LECTOR" Role="LECTOR" />
+            <End Role="RESPONSABLE" EntitySet="RESPONSABLE" />
+            <End Role="LECTOR" EntitySet="LECTOR" />
           </AssociationSet>
           <AssociationSet Name="PF_LECTOR_DETALLE_LECTOR" Association="Self.PF_LECTOR_DETALLE_LECTOR">
-            <End EntitySet="LECTOR" Role="LECTOR" />
-            <End EntitySet="LECTOR_DETALLE" Role="LECTOR_DETALLE" />
+            <End Role="LECTOR" EntitySet="LECTOR" />
+            <End Role="LECTOR_DETALLE" EntitySet="LECTOR_DETALLE" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OKSYSTEMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -142,6 +142,7 @@
           <Property Name="IDRESPONSABLE" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="RESPONSABLE" Relationship="Self.FK_LECTOR_RESPONSABLE" FromRole="LECTOR" ToRole="RESPONSABLE" />
           <NavigationProperty Name="LECTOR_DETALLE" Relationship="Self.PF_LECTOR_DETALLE_LECTOR" FromRole="LECTOR" ToRole="LECTOR_DETALLE" />
+          <Property Name="ESTADO" Type="Int32" />
         </EntityType>
         <EntityType Name="LECTOR_DETALLE">
           <Key>
@@ -255,6 +256,7 @@
           <EntitySetMapping Name="LECTOR">
             <EntityTypeMapping TypeName="OKSYSTEMModel.LECTOR">
               <MappingFragment StoreEntitySet="LECTOR">
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="IDTDOCUMENTO" ColumnName="IDTDOCUMENTO" />
                 <ScalarProperty Name="SERIE" ColumnName="SERIE" />

@@ -26,8 +26,10 @@ namespace Entidad
         public Nullable<int> NUMERO { get; set; }
         public Nullable<System.DateTime> FECHA { get; set; }
         public string IDRESPONSABLE { get; set; }
-    
+        public Nullable<int> ESTADO { get; set; }
+
         public virtual RESPONSABLE RESPONSABLE { get; set; }
+        
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LECTOR_DETALLE> LECTOR_DETALLE { get; set; }
     }

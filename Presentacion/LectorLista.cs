@@ -23,7 +23,7 @@ namespace Presentacion
             InitializeComponent();
 
             grdDatos.AutoGenerateColumns = false;
-            grdDatos.ColumnCount = 6;
+            grdDatos.ColumnCount = 7;
 
             responsables = ResponsableCn.GetResponsables();
 
@@ -49,6 +49,9 @@ namespace Presentacion
             grdDatos.Columns[5].HeaderText = "Nom. Responsable";
             grdDatos.Columns[5].DataPropertyName = "responsable";
 
+            grdDatos.Columns[6].HeaderText = "Estado";
+            grdDatos.Columns[6].DataPropertyName = "estado";
+
             llenar();
         }
 
@@ -73,6 +76,7 @@ namespace Presentacion
             dt.Columns.Add(new DataColumn("Fecha"));
             dt.Columns.Add(new DataColumn("idresponsable"));
             dt.Columns.Add(new DataColumn("responsable"));
+            dt.Columns.Add(new DataColumn("estado"));
 
             for (int i = 0; i < lista.Count; i++)
             {
@@ -97,6 +101,21 @@ namespace Presentacion
                 {
                     dr[5] = "";
                 }
+
+                dr[6] = "";
+
+                switch (lista[i].ESTADO)
+                {
+                    case 1:
+                        dr[6] = "PENDIENTE";
+                        break;
+                    case 2:
+                        dr[6] = "ANULADO";
+                        break;
+                }
+
+                
+
                 dt.Rows.Add(dr);
             }
 

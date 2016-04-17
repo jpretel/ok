@@ -45,6 +45,7 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnInsertar = new System.Windows.Forms.Button();
             this.btnBorrarLinea = new System.Windows.Forms.Button();
+            this.txtEstado = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdDet)).BeginInit();
             this.SuspendLayout();
             // 
@@ -165,6 +166,7 @@
             this.btnAnular.TabIndex = 12;
             this.btnAnular.Text = "Anular";
             this.btnAnular.UseVisualStyleBackColor = true;
+            this.btnAnular.Click += new System.EventHandler(this.btnAnular_Click);
             // 
             // btnEliminar
             // 
@@ -196,11 +198,21 @@
             this.btnBorrarLinea.Visible = false;
             this.btnBorrarLinea.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // txtEstado
+            // 
+            this.txtEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEstado.Location = new System.Drawing.Point(429, 12);
+            this.txtEstado.Name = "txtEstado";
+            this.txtEstado.ReadOnly = true;
+            this.txtEstado.Size = new System.Drawing.Size(101, 20);
+            this.txtEstado.TabIndex = 16;
+            // 
             // LectorDoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(541, 384);
+            this.Controls.Add(this.txtEstado);
             this.Controls.Add(this.btnBorrarLinea);
             this.Controls.Add(this.btnInsertar);
             this.Controls.Add(this.btnEliminar);
@@ -244,5 +256,6 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnInsertar;
         private System.Windows.Forms.Button btnBorrarLinea;
+        private System.Windows.Forms.TextBox txtEstado;
     }
 }
