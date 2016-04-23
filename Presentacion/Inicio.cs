@@ -78,5 +78,14 @@ namespace Presentacion
                 this.Close();
             }
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            if (Program.usuario.IDUSUARIO.Equals("ADMINISTRADOR")) { 
+                UsuarioMnt form = new UsuarioMnt();
+                form.MdiParent = this;
+                form.Show();
+            }
+        }
     }
 }

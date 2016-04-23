@@ -26,5 +26,19 @@ namespace Negocio
             UsuarioDao u = new UsuarioDao();
             return u.GetIDusuario(idusuario);
         }
+
+        public static void CreaActualizaUsuario(USUARIO u)
+        {
+            UsuarioDao dao = new UsuarioDao();
+            dao.BorrarUsuario(u.IDUSUARIO);
+
+            dao.CrearUsuario(u);
+        }
+
+        public static void BorrarUsuario(String idusuario)
+        {
+            UsuarioDao dao = new UsuarioDao();
+            dao.BorrarUsuario(idusuario);
+        }
     }
 }
